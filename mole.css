@@ -1,20 +1,21 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    background-color: rgb(7, 7, 7) ;
+    background-color: rgb(7, 7, 7);
+    color: white; /* Set all text to white */
     background-size: cover;
-    text-emphasis-color: white;
+    margin: 0;
+    padding: 0;
 }
 
 #board {
-    width: 540px;
-    height: 540px;
-    /* background-color: green; */
-
+    width: 90vw;
+    height: 90vw;
+    max-width: 540px;
+    max-height: 540px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-
     background: url("./spacee.png");
     background-size: cover;
     border: 3px solid white;
@@ -22,21 +23,47 @@ body {
 }
 
 #board div {
-    /* board = 540 x 540, divide into 3x3 tiles --> 180 x 180 per div */
-    width: 180px; 
-    height: 180px;
+    /* make it responsive, dividing board size equally */
+    width: 33.33%;
+    height: 33.33%;
     background-image: url("./crater-on-the-moon-removebg-preview.png");
     background-size: cover;
 }
 
 #board div img {
-    /* all img tags inside tiles */
-    width: 100px;
-    height: 100px;
-
+    width: 60%;
+    height: 60%;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
 }
+
+#game-over-message {
+    display: none;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#replay-btn {
+    display: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    display: block; /* Ensures the button behaves as a block-level element */
+    margin-left: auto;
+    margin-right: auto; /* Centers the button horizontally */
+}
+
+#replay-btn:hover {
+    background-color: lightgray;
+}
+

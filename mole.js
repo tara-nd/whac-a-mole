@@ -8,20 +8,28 @@ window.onload = function() {
 }
 
 function setGame() {
-    //set up the grid in html
-    for (let i = 0; i < 9; i++) { //i goes from 0 to 8, stops at 9
-        //<div id="0-8"></div>
+    // Reset score and game over status
+    score = 0;
+    gameOver = false;
+    document.getElementById("score").innerText = score.toString();
+    document.getElementById("game-over-message").style.display = 'none';
+    document.getElementById("replay-btn").style.display = 'none';
+
+    // Clear the board
+    document.getElementById("board").innerHTML = "";
+
+    // Set up the grid in HTML
+    for (let i = 0; i < 9; i++) {
         let tile = document.createElement("div");
         tile.id = i.toString();
         tile.addEventListener("click", selectTile);
         document.getElementById("board").appendChild(tile);
     }
-    setInterval(setMole, 1000); // 1000 miliseconds = 1 second, every 1 second call setMole
-    setInterval(setPlant, 2000); // 2000 miliseconds = 2 seconds, every 2 second call setPlant
+    setInterval(setMole, 1000);
+    setInterval(setPlant, 2000);
 }
 
 function getRandomTile() {
-    //math.random --> 0-1 --> (0-1) * 9 = (0-9) --> round down to (0-8) integers
     let num = Math.floor(Math.random() * 9);
     return num.toString();
 }
@@ -68,10 +76,20 @@ function selectTile() {
     }
     if (this == currMoleTile) {
         score += 10;
-        document.getElementById("score").innerText = score.toString(); //update score html
+        document.getElementById("score").innerText = score.toString();
     }
     else if (this == currPlantTile) {
-        document.getElementById("score").innerText = "GAME OVER: " + score.toString(); //update score html
+        document.getElementById("score").innerText = "GAME OVER: " + score.toString();
         gameOver = true;
+        displayGameOver();
     }
+}
+
+function displayGameOver() {
+    document.getElementById("game-over-message").style.display = 'block';
+    document.getElementById("replay-btn").style.display = 'block';
+}
+
+function replayGame() {
+    setGame();
 }
